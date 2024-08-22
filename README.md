@@ -1,7 +1,6 @@
 For step 1 use the curl 
-curl -X GET http://localhost:8080/api/images?number=1
+curl -X GET http://localhost:8080/api/images?number=5
 
-Unfortunately the API at https://pixabay.com/api/ returns a 400 error for some reason
 
 For step 2 use the curl
  curl -X POST http://localhost:8080/orders -H "Content-Type: application/json" -d '{
