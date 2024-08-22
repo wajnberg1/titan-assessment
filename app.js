@@ -35,7 +35,7 @@ app.get("/api/images",  (req, res) => {
 	const number = req.query.number;
     if (number) {
         // Send a greeting message as the response
-		makeRequest()		
+		makeRequest(number)		
 		 .then((json) => {res.json(json);})
 		 .catch((error) => {res.status(500).send('An error occured ' + error)});
     } else {
@@ -44,9 +44,9 @@ app.get("/api/images",  (req, res) => {
     }	
   });
   
-async function makeRequest() {
+async function makeRequest(number) {
     try {
-        const response = await fetch(`https://pixabay.com/api/?key=${MY_ACCESS_KEY}`);
+        const response = await fetch(`https://pixabay.com/api/?key=${MY_ACCESS_KEY}&per_page=${number}`);
 
         if (response.status === 429) {  // 429 is the status code for "Too Many Requests"
             const retryAfter = response.headers.get('Retry-After') || 60; // Retry-After header or a default value
@@ -62,7 +62,12 @@ async function makeRequest() {
         }
 		
         const data = await response.json();
-        return data;
+		if (data.hits.length > 0) {
+			const result = data.hits.map((el) => {return el.userImageURL});
+			return result;
+		} else {
+			return [];
+		}
 
     } catch (error) {
 		console.error('Error:', error);
