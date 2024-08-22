@@ -46,7 +46,7 @@ app.get("/api/images",  (req, res) => {
   
 async function makeRequest() {
     try {
-        const response = await fetch('https://pixabay.com/api/?key=${MY_ACCESS_KEY}');
+        const response = await fetch(`https://pixabay.com/api/?key=${MY_ACCESS_KEY}`);
 
         if (response.status === 429) {  // 429 is the status code for "Too Many Requests"
             const retryAfter = response.headers.get('Retry-After') || 60; // Retry-After header or a default value
