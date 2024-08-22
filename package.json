@@ -1,0 +1,24 @@
+{
+  "name": "Titan assessment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon -r dotenv/config --inspect=9232 app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Moshe Wajnberg",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+     "mongoose": "^8.5.3"	
+  },
+  "nodemonConfig": {
+    "delay": "2500"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+	"dotenv": "^8.2.0"
+  }
+}
